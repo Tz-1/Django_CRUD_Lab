@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+    <title>Buscar Laboratorios</title>
+</head>
+<style>
+    table {
+        border: 8px outset;
+        border-radius: 10px;
+        border-spacing: 10px;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    th,td {
+        padding: 5px;
+        border: 1px solid;
+    }
+</style>
+<body>
+    <h2 style="text-align:center"> Información de Laboratorios </h2>
+    <table align="center" style="margin: 0px auto;">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Ciudad</th>
+                <th>Pais</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for l in laboratorio %}
+            <tr>
+                <td>{{l.nombre}}</td>
+                <td>{{l.ciudad}}</td>
+                <td>{{l.pais}}</td>
+                <td>
+                    <a href="{% url 'editar-lab' l.pk %}">Actualizar</a>
+                </td>
+                <td>
+                    <a href="{% url 'eliminar-lab' l.pk %}">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br><br>
+    <div class="alert alert-danger" role="alert">
+    ¿Quieres ingresar más laboratorios?
+    </div>
+    <p>
+        <a href="{% url 'insertar-lab' %}"><-- Ir a la pagina de Insercion</a>
+    </p>
+
+    <p>Usted ha visitado esta página {{ num_visits }} veces.</p>
+</body>
+</html>
